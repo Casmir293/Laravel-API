@@ -6,8 +6,8 @@ use App\Models\Invoice;
 use Illuminate\Http\Request;
 use App\Filters\v1\InvoicesFilter;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreInvoiceRequest;
-use App\Http\Requests\UpdateInvoiceRequest;
+use App\Http\Requests\v1\StoreInvoiceRequest;
+use App\Http\Requests\v1\UpdateInvoiceRequest;
 use App\Http\Resources\v1\InvoiceCollection;
 use App\Http\Resources\v1\InvoiceResource;
 

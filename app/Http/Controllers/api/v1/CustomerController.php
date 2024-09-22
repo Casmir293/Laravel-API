@@ -6,9 +6,9 @@ use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Filters\v1\CustomersFilter;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreCustomerRequest;
+use App\Http\Requests\v1\StoreCustomerRequest;
 use App\Http\Resources\v1\CustomerResource;
-use App\Http\Requests\UpdateCustomerRequest;
+use App\Http\Requests\v1\UpdateCustomerRequest;
 use App\Http\Resources\v1\CustomerCollection;
 
 class CustomerController extends Controller
@@ -31,41 +31,25 @@ class CustomerController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(StoreCustomerRequest $request)
     {
-        //
+        return new CustomerResource(Customer::create($request->all()));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Customer $customer)
+    public function show(Request $request, Customer $customer)
     {
-        $includeInvoices = request()->query('includeInvoices');
+        $includeInvoices = $request->query('includeInvoices');
 
         if ($includeInvoices) {
             return new CustomerResource($customer->loadMissing('invoices'));
         }
 
         return new CustomerResource($customer);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Customer $customer)
-    {
-        //
     }
 
     /**
