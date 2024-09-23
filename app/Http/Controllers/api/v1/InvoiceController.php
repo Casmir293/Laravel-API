@@ -13,10 +13,15 @@ use App\Http\Requests\v1\StoreInvoiceRequest;
 use App\Http\Requests\v1\UpdateInvoiceRequest;
 use App\Http\Requests\v1\BulkStoreInvoiceRequest;
 
+/**
+ * @group Invoice management
+ *
+ * APIs for managing invoices
+ */
 class InvoiceController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of invoices.
      */
     public function index(Request $request)
     {
@@ -32,21 +37,8 @@ class InvoiceController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Store a bulk created invoice in storage.
      */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreInvoiceRequest $request)
-    {
-        //
-    }
-
     public function bulkStore(BulkStoreInvoiceRequest $request)
     {
         $bulk = collect($request->all())->map(function ($arr, $key) {
@@ -57,7 +49,7 @@ class InvoiceController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified invoice.
      */
     public function show(Invoice $invoice)
     {
@@ -65,26 +57,10 @@ class InvoiceController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Invoice $invoice)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateInvoiceRequest $request, Invoice $invoice)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
+     * Remove the specified invoice from storage.
      */
     public function destroy(Invoice $invoice)
     {
-        //
+        $invoice->delete();
     }
 }

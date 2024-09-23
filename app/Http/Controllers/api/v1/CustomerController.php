@@ -11,10 +11,15 @@ use App\Http\Resources\v1\CustomerResource;
 use App\Http\Requests\v1\UpdateCustomerRequest;
 use App\Http\Resources\v1\CustomerCollection;
 
+/**
+ * @group Customer management
+ *
+ * APIs for managing customers
+ */
 class CustomerController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of customers.
      */
     public function index(Request $request)
     {
@@ -31,7 +36,7 @@ class CustomerController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created customer in storage.
      */
     public function store(StoreCustomerRequest $request)
     {
@@ -39,7 +44,7 @@ class CustomerController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified customer.
      */
     public function show(Request $request, Customer $customer)
     {
@@ -53,7 +58,7 @@ class CustomerController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified customer in storage.
      */
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
@@ -61,10 +66,10 @@ class CustomerController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified customer from storage.
      */
     public function destroy(Customer $customer)
     {
-        //
+        $customer->delete();
     }
 }
